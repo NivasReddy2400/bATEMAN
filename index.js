@@ -2,11 +2,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
-//const User = require('./model/Users')
+const User = require('./model/Users')
 
 const app = express();
 
-const uri = 'mongodb://127.0.0.1/Users';
+const uri = 'mongodb://127.0.0.1/';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -15,12 +15,12 @@ const options = {
 // mongoose.connect(uri, options)
 //  .then(()=>{console.log('op completed')})
 //  .catch((err)=>{console.log('error is',err)})
-mongoose.connect(uri, options);
+const conn = mongoose.createConnection(uri, options);
 
 const sessionStore = new MongoStore({
     mongoUrl:'mongodb://127.0.0.1/Users',
     mongooseConnection:mongoose.connection,
-    collection:'sessioncollection'
+    collection:'sessioncollectionnnnnn'
 })
 
 app.use(session({
@@ -39,14 +39,14 @@ app.get('/',(req,res)=>{
 })
 
 
-const UserSchema = new mongoose.Schema({
-    name:String,
-    age:Number
-});
+// const UserSchema = new mongoose.Schema({
+//     name:String,
+//     age:Number
+// });
 
 
 
-const User = mongoose.model('UserCollection',UserSchema)
+// const User = mongoose.model('UserCollection',UserSchema)
 // conn.on('connected', () => {
 //   console.log('Database connected');
 // });

@@ -5,6 +5,14 @@ const UserSchema = new mongoose.Schema({
     age:Number
 });
 
+const uri = 'mongodb://127.0.0.1/Users';
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}
+
+const conn = mongoose.createConnection(uri, options);
+
 const User = conn.model('UserCollection',UserSchema)
 
 module.exports = User;
